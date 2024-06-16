@@ -21,7 +21,8 @@ export const formSchema = z.object({
     phoneNumber: z.string().regex(/^[0-9]+$/i, "Only numbers are allowed")
   }).refine(data => {
     const countryCode = data.countryCode
-    // console.log(countryCodes)
+    console.log(data)
+    console.log(countryCodes)
     const size = countryCodes.find(code => code.phone === countryCode) || { phoneLength: 0 }
     console.log(size)
     if (data.phoneNumber.length === size.phoneLength) {
