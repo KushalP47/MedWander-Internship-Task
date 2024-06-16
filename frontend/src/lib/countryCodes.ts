@@ -1,10 +1,5 @@
-interface data {
-    code: string,
-    label: string,
-    phone: string,
-    phoneLength: number | number[],
-    suggested?: boolean,
-}
+import { data, code } from './types';
+
 
 const dataSet: data[] = [
     { "code": "AD", "label": "Andorra", "phone": "376", "phoneLength": 6},
@@ -251,15 +246,15 @@ const dataSet: data[] = [
     { "code": "ZA", "label": "South Africa", "phone": "27", "phoneLength": 9},
 ]
 
-export interface code {
-    country: string,
-    phone: string,
-    phoneLength: number
-}
 
-export const countryCodes: code[] = dataSet.map((data): code => {
+
+const countryCodes: code[] = dataSet.map((data): code => {
     if (Array.isArray(data.phoneLength)) {
         return { country: data.label, phone: data.phone, phoneLength: Math.max(...data.phoneLength) };
     }
     return { country: data.label, phone: data.phone, phoneLength: data.phoneLength };
 });
+
+countryCodes.sort((a, b) => a.country.localeCompare(b.country));
+
+export { countryCodes };
