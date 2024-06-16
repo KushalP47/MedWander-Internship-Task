@@ -3,14 +3,24 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { countryCodes } from './lib/countryCodes'
 import { formSchema, FormValues } from './lib/types'
+import { postData } from './api/formApi'
 
 function App() {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>(
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>(
     {
       resolver: zodResolver(formSchema),
     }
   );
-  const onSubmit = (data: FormValues) => console.log(data);
+  const onSubmit = async(data: FormValues) => {
+    const result = await postData(data)
+    console.log(result)
+    if(result.status === 200) {
+      alert('Success')
+      reset()
+    } else {
+      alert('Failed: Server side error')
+    }
+  };
   return (
     <div className="">
     <div className="h-50% border-4 border-blue-600 text-3xl">
