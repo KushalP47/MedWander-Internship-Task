@@ -1,22 +1,21 @@
-import { useState } from 'react'
-import UserForm from './components/form'
+import { useState, createContext, Dispatch, SetStateAction } from 'react';
+import UserForm from '@/components/form';
+
+interface FormTypeContextType {
+  formType: string | null;
+  setFormType: Dispatch<SetStateAction<string | null>>;
+}
+
+export const FormTypeContext = createContext<FormTypeContextType | null>(null);
 
 function App() {
-  const [formType, setFormType] = useState('Home')
-  const handleFormType = (formType: string) => {
-    setFormType(formType)
-  }
+  const [formType, setFormType] = useState<string | null>(null);
+
   return (
-    <div>
-      <button onClick={() => handleFormType('Form A')}>Form A</button>
-      <button onClick={() => handleFormType('Form B')}>Form B</button>
-      <FormSelector formType={formType} />
-    </div>
-  )
-  return (
-    (formType == "Form A" && <UserForm formType="Form A" />)
-    (formType == "Form B" && <UserForm formType="Form B" />)
+    <FormTypeContext.Provider value={{ formType, setFormType }}>
+      <UserForm />
+    </FormTypeContext.Provider>
   )
 }
 
-export default App
+export default App;

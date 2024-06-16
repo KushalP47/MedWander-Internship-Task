@@ -5,12 +5,17 @@ export const postData = async (data: FormValues, formType: string) => {
         formType,
         data
     }
-    const response = await fetch('http://localhost:3001/api/form', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reqBody)
-    });
-    return response.json();
+    // const response = await fetch('http://localhost:3001/api/form', {
+    //     method: 'POST',
+    //     headers: {
+    //     'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(reqBody)
+    // });
+    const response = {
+        status: 200,
+        data: reqBody,
+        formType
+    };
+    return response;
 }
