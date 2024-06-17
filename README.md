@@ -10,6 +10,7 @@ This project consists of a full-stack application with a React frontend and an E
 
 - **Frontend Screenshots**: [View Here](https://drive.google.com/drive/folders/1bVU-Oud3vnzTEH166WtjurixdNapNEEi?usp=sharing)
 - **Excel Sheet**: [Access Here](https://docs.google.com/spreadsheets/d/1s-esBYzi5BOrA_wUzjHoVJv7tKPH1KA4s8bKKuzyJbY/edit?usp=sharing)
+- **Deployed Link**: [Visit](https://med-wander-internship-task-j41sgfkf6-kushalp47s-projects.vercel.app/)
 
 ## Installation
 
