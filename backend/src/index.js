@@ -18,7 +18,7 @@ client.query('SELECT * FROM users', (err, res) => {
     for (let row of res.rows) {
         console.log(row);
     }
-    client.end();
+    // client.end();
 });
 
 
