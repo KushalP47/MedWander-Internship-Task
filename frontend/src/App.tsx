@@ -10,7 +10,7 @@ export const FormTypeContext = createContext<FormTypeContextType | null>(null);
 
 function App() {
   const [formType, setFormType] = useState<string | null>(null);
-
+  console.log(String(import.meta.env.VITE_SERVER_LINK))
   return (
     <FormTypeContext.Provider value={{ formType, setFormType }}>
       <UserForm />

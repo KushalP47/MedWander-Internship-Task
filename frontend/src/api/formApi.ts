@@ -8,6 +8,8 @@ export const postData = async (data: FormValues, formType: string) => {
         countryCode: data.countryCode,
         phoneNumber: data.phoneNumber
     }
-    const response = await axios.post('http://localhost:3000/api/v1/postData', reqBody)
+    console.log(import.meta.env.VITE_SERVER_LINK)
+    const url = `${import.meta.env.VITE_SERVER_LINK}/api/v1/postData`
+    const response = await axios.post(url, reqBody)
     return response
 }
