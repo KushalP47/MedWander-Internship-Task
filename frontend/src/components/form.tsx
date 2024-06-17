@@ -74,7 +74,9 @@ function UserForm() {
         }
     }
 
-    
+    const handleExcel = async () => {
+      window.open("https://docs.google.com/spreadsheets/d/1s-esBYzi5BOrA_wUzjHoVJv7tKPH1KA4s8bKKuzyJbY/edit?usp=sharing", "_blank");
+    }
 
     return (
       <div className="min-h-screen flex flex-col bg-white">
@@ -122,7 +124,7 @@ function UserForm() {
                   onClick={handleUpdateData}>
                     Update Data</Button>
                 <Button className="m-2 w-1/3 h-1/2 text-2xl text-black bg-white border-4 border-blue-700 hover:bg-blue-700 hover:text-white" 
-                onClick={handleUpdateData}>
+                onClick={handleExcel}>
                   Excel</Button>
               </div>
             </div>
