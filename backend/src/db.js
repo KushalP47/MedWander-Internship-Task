@@ -1,10 +1,17 @@
-import postgres from "postgres";
+import dotenv from 'dotenv';
+dotenv.config();
+import pkg from 'pg';
+const { Client } = pkg;
 
-const connectionString = process.env.DATABASE_URL
-const connectDB = async() => postgres(connectionString)
+const client = new Client({
+    host: process.env.POSTGRES_HOST,
+    user: process.env.POSTGRES_USER,
+    port: process.env.POSTGRES_PORT,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE_NAME,
+});
 
-export default connectDB
+client.connect();
 
-const supabaseUrl = process.env.SUPABASE_URL
-const supabaseKey = process.env.SUPABASE_KEY
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export default client;
+

@@ -17,8 +17,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 // import controllers
-import { getExcelData } from "./controllers/getExcel.js";
-import { postData } from "./controllers/postData.js";
+import { getExcelData } from "../controllers/getExcel.js";
+import { postData } from "../controllers/postData.js";
 
 
 // declareing routes

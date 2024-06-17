@@ -1,20 +1,27 @@
 import express from 'express';
+import client from './db.js';
 import dotenv from "dotenv";
-import { createClient } from '@supabase/supabase-js'  
-import connectDB from './db.js'; 
 dotenv.config({     // configure dotenv
-    path: "./.env"  // set path of env
+    path: './.env'  // set path of env
 }); 
-const app = express();
+import { app } from './app.js';
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-    }
-);
+    console.log(`Server is running on port ${3000}`);
+});
 
-connectDB()
-    .then(() => console.log("Connected to database"))
-    .catch((err) => console.error("Error connecting to database", err));
+client.query('SELECT * FROM users', (err, res) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    for (let row of res.rows) {
+        console.log(row);
+    }
+    client.end();
+});
+
+
 
 
 
