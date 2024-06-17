@@ -21,6 +21,10 @@ import {
 } from "@/components/ui/select";
 import {
   Card,
+  CardTitle,
+  CardHeader,
+  CardContent,
+  CardFooter,
 } from "@/components/ui/card";
 
 import { Input } from "@/components/ui/input";
@@ -151,64 +155,73 @@ function UserForm() {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Name.." {...field} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <div className='w-full flex flex-row'>
-          <div className="w-1/5">
+    <div className="flex justify-center items-center">
+    <Card className="bg-white border-4 border-black w-1/2 p-6 my-10 flex flex-col justify-center items-center">
+      <CardHeader>
+        <CardTitle className='font-bold text-4xl'>{formType}</CardTitle>
+      </CardHeader>
+      {/* <CardContent> */}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col justify-center items-center text-xl w-full space-y-8">
             <FormField
               control={form.control}
-              name="countryCode"
+              name="name"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Country Code</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select Country Code" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {countryCodes.map((code) => (
-                        <SelectItem key={code.phone} value={code.phone}>
-                          {code.country} +{code.phone}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className='w-4/5'>
-            <FormField
-              control={form.control}
-              name="phoneNumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone Number</FormLabel>
+                <FormItem className='w-3/4'>
+                  <FormLabel className='text-2xl'>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input placeholder="Name.." {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
-          </div>
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+            {/* <div className='w-full flex flex-row'> */}
+              {/* <div className="w-2/5"> */}
+                <FormField
+                  control={form.control}
+                  name="countryCode"
+                  render={({ field }) => (
+                    <FormItem className='w-3/4'>
+                      <FormLabel className="text-2xl">Country Code</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="+91" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {countryCodes.map((code) => (
+                            <SelectItem key={code.phone} value={code.phone}>
+                              {code.country} +{code.phone}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
+                  )}
+                />
+              {/* </div> */}
+              {/* <div className='w-3/5'> */}
+                <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormItem className='w-3/4'>
+                      <FormLabel className="text-2xl">Phone Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              {/* </div> */}
+            {/* </div> */}
+            <Button className="size-auto text-center text-xl" type="submit">Submit</Button>
+          </form>
+        </Form>
+      {/* </CardContent> */}
+    </Card>
+    </div>
   );
 }
 
