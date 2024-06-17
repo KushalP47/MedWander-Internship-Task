@@ -7,6 +7,11 @@ export interface code {
     phoneLength: number
 }
 
+export interface apiResponse {
+  status: number,
+  message: string,
+}
+
 export interface data {
     code: string,
     label: string,

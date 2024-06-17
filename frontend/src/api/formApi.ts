@@ -1,21 +1,13 @@
 import { FormValues } from '../lib/types'
+import axios from 'axios';
 
 export const postData = async (data: FormValues, formType: string) => {
     const reqBody = {
         formType,
-        data
+        name: data.name,
+        countryCode: data.countryCode,
+        phoneNumber: data.phoneNumber
     }
-    // const response = await fetch('http://localhost:3001/api/form', {
-    //     method: 'POST',
-    //     headers: {
-    //     'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(reqBody)
-    // });
-    const response = {
-        status: 200,
-        data: reqBody,
-        formType
-    };
-    return response;
+    const response = await axios.post('http://localhost:3000/api/v1/postData', reqBody)
+    return response
 }

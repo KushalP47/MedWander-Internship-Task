@@ -4,7 +4,7 @@ import { FormValues, formSchema } from '../lib/types';
 import { countryCodes } from '../lib/countryCodes';
 import { postData } from '../api/formApi';
 import { Button } from "@/components/ui/button";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {
   Form,
   FormControl,
@@ -30,6 +30,31 @@ function UserForm() {
   }
 
   const { formType, setFormType } = context;
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+      countryCode: '',
+      phoneNumber: ''
+    }
+  });
+
+  // Load default values based on formType
+  const loadDefaultValues = () => {
+    if(!formType) return;
+    const defaultValues = localStorage.getItem(formType) ? JSON.parse(localStorage.getItem(formType) || '{}') : {};
+    form.reset({
+      name: defaultValues?.name || '',
+      countryCode: defaultValues?.countryCode || '',
+      phoneNumber: defaultValues?.phoneNumber || ''
+    });
+  };
+
+  useEffect(() => {
+    if (formType) {
+      loadDefaultValues();
+    }
+  }, [formType]);
 
   if (!formType) {
     const handleUpdateData = async () => {
@@ -53,17 +78,6 @@ function UserForm() {
       </div>
     );
   }
-
-  const defaultValues = localStorage.getItem(formType) ? JSON.parse(localStorage.getItem(formType) || '{}') : {};
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: defaultValues?.name || '',
-      countryCode: defaultValues?.countryCode || '',
-      phoneNumber: defaultValues?.phoneNumber || ''
-    }
-  });
 
   const onSubmit = async (data: FormValues) => {
     localStorage.setItem(formType, JSON.stringify(data));
