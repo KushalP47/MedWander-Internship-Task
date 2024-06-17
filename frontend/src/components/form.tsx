@@ -11,6 +11,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
@@ -23,8 +24,6 @@ import {
   Card,
   CardTitle,
   CardHeader,
-  CardContent,
-  CardFooter,
 } from "@/components/ui/card";
 
 import { Input } from "@/components/ui/input";
@@ -170,8 +169,9 @@ function UserForm() {
                 <FormItem className='w-3/4'>
                   <FormLabel className='text-2xl'>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Name.." {...field} />
+                    <Input className="text-sm" placeholder="Name.." {...field} />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -186,7 +186,7 @@ function UserForm() {
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="+91" />
+                            <SelectValue placeholder="Select Country Code" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -197,6 +197,7 @@ function UserForm() {
                           ))}
                         </SelectContent>
                       </Select>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -209,8 +210,9 @@ function UserForm() {
                     <FormItem className='w-3/4'>
                       <FormLabel className="text-2xl">Phone Number</FormLabel>
                       <FormControl>
-                        <Input placeholder="" {...field} />
+                        <Input className="text-sm" placeholder="" {...field} />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
